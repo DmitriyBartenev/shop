@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import { useProducts } from "./hooks/products";
 
@@ -9,20 +9,17 @@ import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import Modal from "./components/Modal";
 import CreateProduct from "./components/CreateProduct";
+import { ModalContext } from './context/ModalContext';
 
 const App = () => {
 
-    const [modal, setModal] = useState(false);
-
     const {error, loading, products, addProduct} = useProducts();
 
-    const createHandler = (product: IProduct) => {
-        setModal(false);
-        addProduct(product);
-    }
+    const {modal, open, close} = useContext(ModalContext);
 
-    const onClose = () => {
-        setModal(false);
+    const createHandler = (product: IProduct) => {
+        close();
+        addProduct(product);
     }
 
     return (
@@ -32,11 +29,11 @@ const App = () => {
             {products.map(item => <Product key={item.id} product={item}/>)}
 
             {modal && 
-            <Modal title='Create new product' onClose={onClose}>
+            <Modal title='Create new product' onClose={close}>
                 <CreateProduct onCreate={createHandler}/>
             </Modal>  }  
             <div className='flex items-center justify-center mb-2'>
-                <button className='rounded-sm bg-blue-700 text-white text-2xl px-4 py-2' onClick={() => setModal(true)}>
+                <button className='rounded-sm bg-blue-700 text-white text-2xl px-4 py-2' onClick={open}>
                     Add More 
                 </button>
             </div>
