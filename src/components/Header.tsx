@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Counter } from './Counter';
 
 interface Person {
     age: number,
@@ -14,30 +15,23 @@ interface HeaderProps {
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-interface TextNode {
-    text: string
-}
+export const Header: React.FC<HeaderProps> = ({title}) => {
 
-
-export const Header: React.FC<HeaderProps> = ({title, handleChange}) => {
-
-    const [count, setCount] = useState<TextNode>({ text: 'Hello World!' });
-    const [value, setValue] = useState('');
-
-    const inputRef = useRef<HTMLInputElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
     const divRef = useRef<HTMLDivElement>(null);
-    
+
     return(
-        <header className="w-full h-12 bg-blue-500">
+        <header
+            ref={headerRef} 
+            className="w-full h-12 bg-blue-500">
             <div
                 ref={divRef} 
-                className="flex h-full py-2 px-8 justify-end items-center text-white">
-                <p className="cursor-pointer">{title}</p>
-                <input 
-                    type='text'
-                    ref={inputRef}
-                    value={value} 
-                    onChange={handleChange}/>
+                className="flex h-full py-2 px-8 justify-center items-center text-white">
+                <p>{title}</p>
+                <Counter>
+                    {({ count, setCount }) => (<div>{count}<button onClick={() => setCount(count + 1)}>+</button></div>
+                    )}
+                </Counter>
             </div>
         </header>
     )

@@ -24,8 +24,6 @@ const App = () => {
         addProduct(product);
     }
 
-
-
     return (
         <>
             <Header title='Here is Title'/>
