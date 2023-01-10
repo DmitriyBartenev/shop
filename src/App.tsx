@@ -31,7 +31,6 @@ const App = () => {
                 {loading && <Loader/>}
                 {error && <ErrorMessage error={error}/>}
                 {products.map(item => <Product key={item.id} product={item}/>)}
-
                 {modal && 
                 <Modal title='Create new product' onClose={close}>
                     <CreateProduct onCreate={createHandler}/>

@@ -12,6 +12,12 @@ export function useProducts(){
     function addProduct(product: IProduct){
         setProducts(prev => [...prev, product]);
     }
+    
+    function removeProduct(id: number){
+        const newList = products.filter(item => item.id !== id)
+        console.log(newList)
+        setProducts(newList)
+    }
 
     async function fetchProducts(){
         try{
@@ -31,5 +37,5 @@ export function useProducts(){
         fetchProducts()
     },[])
 
-    return{ products, error, loading, addProduct }
+    return{ products, error, loading, addProduct, removeProduct }
 }

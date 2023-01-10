@@ -5,6 +5,7 @@ import axios from 'axios';
 import ErrorMessage from './ErrorMessage';
 
 const productData: IProduct = {
+    id: 21,
     title: '',
     price: Math.floor(Math.random() * (100 - 50) + 50),
     description: 'lorem ipsum set',
