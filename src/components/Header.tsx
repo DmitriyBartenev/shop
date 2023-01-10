@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Counter } from './Counter';
+import React, { useRef } from 'react';
+
 
 interface Person {
     age: number,
@@ -28,11 +28,8 @@ export const Header: React.FC<HeaderProps> = ({title}) => {
                 ref={divRef} 
                 className="flex h-full py-2 px-8 justify-center items-center text-white">
                 <p>{title}</p>
-                <Counter>
-                    {({ count, setCount }) => (<div>{count}<button onClick={() => setCount(count + 1)}>+</button></div>
-                    )}
-                </Counter>
             </div>
-        </header>
+            
+        </header> 
     )
 }

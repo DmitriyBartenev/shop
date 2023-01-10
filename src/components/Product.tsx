@@ -26,6 +26,10 @@ export function Product({product}: ProductProps){
                 <>
                     <p className="text-center">{product.description}</p>
                     <p>Rate: <span className="font-bold">{product?.rating?.rate}</span></p>
+                    <div className='flex w-full justify-evenly items-center'>
+                        <button className="bg-blue-400 rounded-sm p-2">Add To Cart</button>
+                        <button className="bg-red-600 rounded-sm p-2">Delete</button>
+                    </div>
                 </>
             }
         </div>
